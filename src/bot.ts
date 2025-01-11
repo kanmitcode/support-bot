@@ -15,7 +15,7 @@ const clientOptions: ClientOptions = {
       '--disable-setuid-sandbox'
     ],
   },
-  webVersionCache: { type: 'remote', remotePath: 'https://raw.githubusercontent.com/wppconnect-team/wa-version/main/html/2.2412.54.html', },
+  webVersionCache: { type: 'remote', remotePath: 'https://raw.githubusercontent.com/wppconnect-team/wa-version/main/html/2.2403.2.html', },
   authStrategy: new LocalAuth({
     clientId: "support-bot",
   }),
@@ -61,10 +61,12 @@ client.on('message', async (message: Message) => {
       const greetingMessage = `Hi! I'm ${botName}, your support assistant. What's your name?`;
       await client.sendMessage(sender, greetingMessage);
       sessionData[sender] = '';
+      logger.info(`${sender}: ${message.body}`);
       return;
     } else if (sessionData[sender] === '') {
       sessionData[sender] = message.body.trim();
       await client.sendMessage(sender, `Nice to meet you, ${message.body}! How can I assist you today?`);
+      logger.info(`message: ${message.body}`);
     } else if (message.body.toLowerCase() === 'exit') {
       await message.reply('Goodbye!');
       delete sessionData[sender]; // Clear session
