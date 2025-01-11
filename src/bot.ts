@@ -8,19 +8,31 @@ import logger from './utils/logger';
 
 dotenv.config();
 
+// const clientOptions: ClientOptions = {
+//   authStrategy: new LocalAuth({
+//     clientId: "support-bot",
+//   }),
+//   puppeteer: {
+//     headless: true,
+//     args: [
+//       '--no-sandbox',
+//       '--disable-gpu'
+//     ],
+//   },
+//   webVersionCache: {
+//     type: "remote",
+//     remotePath:
+//       "https://raw.githubusercontent.com/wppconnect-team/wa-version/main/html/2.2412.54.html",
+//   },
+// };
+
+
 const clientOptions: ClientOptions = {
-  authStrategy: new LocalAuth({
-    clientId: "support-bot",
-  }),
-  puppeteer: {
-    headless: true,
-    args: [
-      '--no-sandbox',
-      '--disable-setuid-sandbox', 
-      '--disable-gpu'
-    ],
+  webVersionCache: {
+    type: "remote",
+    remotePath:
+      "https://raw.githubusercontent.com/wppconnect-team/wa-version/main/html/2.2412.54.html",
   },
-  webVersionCache: { type: 'remote', remotePath: 'https://raw.githubusercontent.com/wppconnect-team/wa-version/main/html/2.2412.54.html', }
 };
 
 export const client = new Client(clientOptions);
