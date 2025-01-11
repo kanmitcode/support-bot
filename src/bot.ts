@@ -10,6 +10,7 @@ dotenv.config();
 
 const clientOptions: ClientOptions = {
   puppeteer: {
+    headless: true,
     args: [
       '--no-sandbox',
       '--disable-setuid-sandbox'
