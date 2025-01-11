@@ -16,9 +16,7 @@ const clientOptions: ClientOptions = {
     ],
   },
   webVersionCache: { type: 'remote', remotePath: 'https://raw.githubusercontent.com/wppconnect-team/wa-version/main/html/2.2403.2.html', },
-  authStrategy: new LocalAuth({
-    clientId: "support-bot",
-  }),
+  authStrategy: new LocalAuth(),
 };
 
 export const client = new Client(clientOptions);
