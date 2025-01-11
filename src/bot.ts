@@ -11,15 +11,14 @@ dotenv.config();
 
 // const clientOptions: ClientOptions = {
 //   puppeteer: {
-//     // headless: true,
+//     headless: true,
 //     args: [
-//       '--no-sandbox',
-//       '--disable-setuid-sandbox',
-//       '--disable-dev-shm-usage'
-//     ],
+//       '--no-sandbox'
+//     ]
 //   },
-//   authStrategy: new LocalAuth(),
-//   // webVersionCache: { type: 'remote', remotePath: 'https://raw.githubusercontent.com/wppconnect-team/wa-version/main/html/2.2403.2.html', },
+//   authStrategy: new LocalAuth({
+//     clientId: "support-bot"
+//   })
 // };
 
 const clientOptions: ClientOptions = {
@@ -30,8 +29,9 @@ const clientOptions: ClientOptions = {
     ]
   },
   authStrategy: new LocalAuth({
-    clientId: "support-bot"
-  })
+    clientId: 'SupportBot', // Unique identifier for this session
+    dataPath: './wwebjs_auth', // Persistent session folder
+  }),
 };
 
 export const client = new Client(clientOptions);
@@ -42,9 +42,6 @@ const sessionData: Record<string, string> = {}; // In-memory session storage
 
 client.on('qr', (qr: string) => {
   qrcode.generate(qr, { small: true });
-  // const qrPath = './src/qr/qr.png';
-  // generateQRCode(qr, qrPath);
-  // generateQRCode(qr, './public/qr.png');
   const publicFolderPath = path.join(__dirname, 'public', 'qr.png');
   generateQRCode(qr, publicFolderPath);
   console.log('QR Code received. Scan with your WhatsApp.');
