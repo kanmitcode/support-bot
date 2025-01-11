@@ -1,0 +1,35 @@
+version: '3'
+services:
+  database:
+    image: postgres
+    container_name: postgres-db
+    environment:
+      POSTGRES_USER: kanmit
+      POSTGRES_PASSWORD: Manager2025
+      POSTGRES_DB: supportbotdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+  web-api:
+    image: support-bot
+    # build:
+    #   context: .
+    #   dockerfile: Dockerfile
+    container_name: node-web-api
+    ports:
+      - "3000:3000"
+    environment:
+      DATABASE_HOST: database
+      DATABASE_PORT: 5432
+      DATABASE_USER: kanmit
+      DATABASE_PASSWORD: Manager2025
+      DATABASE_NAME: supportbotdb
+    depends_on:
+      - database
+    volumes:
+      - ./.wwebjs_auth:/app/.wwebjs_auth
+
+volumes:
+  db_data:

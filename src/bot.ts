@@ -4,20 +4,35 @@ import dotenv from 'dotenv';
 import openai from './config/openai';
 import prisma from './config/db';
 import logger from './utils/logger';
-// import { generateQRCode } from './utils/qrUtils';
+import { generateQRCode } from './utils/qrUtils';
 
 dotenv.config();
+
+// const clientOptions: ClientOptions = {
+//   puppeteer: {
+//     // headless: true,
+//     args: [
+//       '--no-sandbox',
+//       '--disable-setuid-sandbox',
+//       '--disable-dev-shm-usage'
+//     ],
+//   },
+//   authStrategy: new LocalAuth(),
+//   // webVersionCache: { type: 'remote', remotePath: 'https://raw.githubusercontent.com/wppconnect-team/wa-version/main/html/2.2403.2.html', },
+// };
 
 const clientOptions: ClientOptions = {
   puppeteer: {
     headless: true,
     args: [
       '--no-sandbox',
-      '--disable-setuid-sandbox'
+      // '--disable-setuid-sandbox',
+      // '--disable-dev-shm-usage'
     ],
   },
-  webVersionCache: { type: 'remote', remotePath: 'https://raw.githubusercontent.com/wppconnect-team/wa-version/main/html/2.2403.2.html', },
-  authStrategy: new LocalAuth(),
+  authStrategy: new LocalAuth({
+    clientId: "support-bot",
+  }),
 };
 
 export const client = new Client(clientOptions);
@@ -27,8 +42,10 @@ const sessionData: Record<string, string> = {}; // In-memory session storage
 // const sessions: { [key: string]: string } = {};
 
 client.on('qr', (qr: string) => {
-  console.log('QR Code received. Scan with your WhatsApp.');
   qrcode.generate(qr, { small: true });
+  const qrPath = './src/qr/qr.png';
+  generateQRCode(qr, qrPath);
+  console.log('QR Code received. Scan with your WhatsApp.', qr);
 });
 
 client.on('authenticated', () => {

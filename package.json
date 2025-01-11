@@ -3,10 +3,11 @@
   "version": "1.0.0",
   "main": "dist/server.js",
   "scripts": {
-    "dev": "tsc && nodemon dist/server.js",
+    "dev": "npm run prisma:setup && tsc && node dist/server.js",
     "start": "tsc && node dist/server.js",
     "test": "jest",
-    "build": "tsc"
+    "build": "tsc",
+    "prisma:setup": "npx prisma db push && npx prisma generate"
   },
   "keywords": [],
   "author": "Oyekanmi Owolabi",
