@@ -10,7 +10,7 @@ dotenv.config();
 
 const clientOptions: ClientOptions = {
   puppeteer: {
-    headless: false,
+    headless: true,
   },
   authStrategy: new LocalAuth({
     clientId: "support-bot",
