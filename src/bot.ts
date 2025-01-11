@@ -10,7 +10,10 @@ dotenv.config();
 
 const clientOptions: ClientOptions = {
   puppeteer: {
-    headless: true,
+    args: [
+      '--no-sandbox',
+      '--disable-setuid-sandbox'
+    ],
   },
   authStrategy: new LocalAuth({
     clientId: "support-bot",
