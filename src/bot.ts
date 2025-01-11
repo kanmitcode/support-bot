@@ -16,6 +16,7 @@ const clientOptions: ClientOptions = {
     headless: true,
     args: [
       '--no-sandbox',
+      '--disable-setuid-sandbox', 
       '--disable-gpu'
     ],
   },
