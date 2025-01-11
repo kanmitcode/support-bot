@@ -9,20 +9,16 @@ import logger from './utils/logger';
 dotenv.config();
 
 const clientOptions: ClientOptions = {
-  authStrategy: new LocalAuth({
-    clientId: "support-bot",
-  }),
   puppeteer: {
     args: [
       '--no-sandbox',
-      '--disable-setuid-sandbox', 
-      '--disable-gpu'
+      '--disable-setuid-sandbox'
     ],
   },
-  webVersionCache: {
-    type: "remote",
-    remotePath: "https://raw.githubusercontent.com/wppconnect-team/wa-version/main/html/2.2412.54.html",
-  },
+  webVersionCache: { type: 'remote', remotePath: 'https://raw.githubusercontent.com/wppconnect-team/wa-version/main/html/2.2412.54.html', },
+  authStrategy: new LocalAuth({
+    clientId: "support-bot",
+  }),
 };
 
 export const client = new Client(clientOptions);
