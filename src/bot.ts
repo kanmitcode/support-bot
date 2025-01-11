@@ -5,6 +5,7 @@ import openai from './config/openai';
 import prisma from './config/db';
 import logger from './utils/logger';
 import { generateQRCode } from './utils/qrUtils';
+import path from 'path';
 
 dotenv.config();
 
@@ -25,14 +26,12 @@ const clientOptions: ClientOptions = {
   puppeteer: {
     headless: true,
     args: [
-      '--no-sandbox',
-      // '--disable-setuid-sandbox',
-      // '--disable-dev-shm-usage'
-    ],
+      '--no-sandbox'
+    ]
   },
   authStrategy: new LocalAuth({
-    clientId: "support-bot",
-  }),
+    clientId: "support-bot"
+  })
 };
 
 export const client = new Client(clientOptions);
@@ -43,9 +42,12 @@ const sessionData: Record<string, string> = {}; // In-memory session storage
 
 client.on('qr', (qr: string) => {
   qrcode.generate(qr, { small: true });
-  const qrPath = './src/qr/qr.png';
-  generateQRCode(qr, qrPath);
-  console.log('QR Code received. Scan with your WhatsApp.', qr);
+  // const qrPath = './src/qr/qr.png';
+  // generateQRCode(qr, qrPath);
+  // generateQRCode(qr, './public/qr.png');
+  const publicFolderPath = path.join(__dirname, 'public', 'qr.png');
+  generateQRCode(qr, publicFolderPath);
+  console.log('QR Code received. Scan with your WhatsApp.');
 });
 
 client.on('authenticated', () => {
