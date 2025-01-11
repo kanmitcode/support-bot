@@ -17,14 +17,3 @@
   "include": ["src/**/*.ts"],
   "exclude": ["node_modules", "dist"]
 }
-
-// {
-//   "compilerOptions": {
-//     "target": "ES2021",
-//     "module": "commonjs",
-//     "outDir": "./dist",
-//     "rootDir": "./src",
-//     "strict": true,
-//     "esModuleInterop": true
-//   }
-// }
