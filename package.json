@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "main": "dist/server.js",
   "scripts": {
-    "dev": "npm run prisma:setup && tsc && node dist/server.js",
-    "start": "tsc && node dist/server.js",
+    "dev": "npm run prisma:setup && tsc && npm run test:coverage && node dist/server.js",
+    "start": "npm run prisma:setup && tsc && npm run test && node dist/server.js",
+    "playground": "tsc && node dist/server.js",
     "test": "jest",
     "test:coverage": "jest --coverage",
     "build": "tsc",
