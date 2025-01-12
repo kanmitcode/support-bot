@@ -9,9 +9,9 @@ describe('FAQ Routes', () => {
   });
 
   it('should fetch FAQ by ID', async () => {
-    const res = await request(app).get('/api/faqs/1');
+    const res = await request(app).get('/api/faqs/5');
     expect(res.status).toBe(200);
-    expect(res.body.data).toHaveProperty('id', 1);
+    expect(res.body.data).toHaveProperty('id', 5);
   });
 
   it('should return 404 for non-existing FAQ', async () => {
@@ -31,4 +31,30 @@ describe('FAQ Routes', () => {
     expect(res.body.data).toHaveProperty('question', newFAQ.question);
     expect(res.body.data).toHaveProperty('answer', newFAQ.answer);
   });
+
+  // it('should update an existing FAQ', async () => {
+  //   const updatedFAQ = {
+  //     question: 'What are your business hours?',
+  //     answer: 'Our business hours are Monday to Friday, 9:00 AM to 6:00 PM. Let us know how we can assist you! You can contact admin via email',
+  //   };
+  //   const res = await request(app).put('/api/faqs/68').send(updatedFAQ);
+  //   expect(res.status).toBe(200);
+  //   expect(res.body.message).toBe('FAQ successfully updated');
+  //   expect(res.body.data).toHaveProperty('question', updatedFAQ.question);
+  //   expect(res.body.data).toHaveProperty('answer', updatedFAQ.answer);
+  // });
+
+  // it('should delete a single FAQ by ID', async () => {
+  //   const res = await request(app).delete('/api/faqs/1');
+  //   expect(res.status).toBe(200);
+  //   expect(res.body.message).toBe('FAQ successfully deleted');
+  // });
+
+  // it('should delete all FAQs', async () => {
+  //   const res = await request(app).delete('/api/faqs');
+  //   expect(res.status).toBe(200);
+  //   expect(res.body.message).toBe('All FAQs successfully deleted');
+  // });
+
 });
+

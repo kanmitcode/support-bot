@@ -19,3 +19,26 @@ export const createQueryLog = async (req: Request, res: Response): Promise<void>
     res.status(500).json({ message: 'Error creating query log', error });
   }
 };
+
+export const deleteQueryLogById = async (req: Request, res: Response): Promise<void> => {
+  const { id } = req.params;
+  try {
+    const deleted = await queryLogService.deleteQueryLogById(Number(id));
+    if (deleted) {
+      res.status(200).json({ message: 'Query log successfully deleted', data: deleted });
+    } else {
+      res.status(404).json({ message: 'Query log not found', data: null });
+    }
+  } catch (error) {
+    res.status(500).json({ message: 'Failed to delete query log', error });
+  }
+};
+
+export const deleteAllQueryLogs = async (_req: Request, res: Response): Promise<void> => {
+  try {
+    await queryLogService.deleteAllQueryLogs();
+    res.status(200).json({ message: 'All query logs successfully deleted' });
+  } catch (error) {
+    res.status(500).json({ message: 'Failed to delete all query logs', error });
+  }
+};
