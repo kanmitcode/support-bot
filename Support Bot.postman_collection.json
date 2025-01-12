@@ -1,0 +1,198 @@
+{
+	"info": {
+		"_postman_id": "80c19da0-e448-4b64-b2b3-dedafbaf8a78",
+		"name": "Support Bot",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37299068",
+		"_collection_link": "https://verba0.postman.co/workspace/Verba-Workspace~758a55c6-7423-4da0-873b-f414e6783900/collection/37299068-80c19da0-e448-4b64-b2b3-dedafbaf8a78?action=share&source=collection_link&creator=37299068"
+	},
+	"item": [
+		{
+			"name": "FAQs",
+			"item": [
+				{
+					"name": "Get FAQs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{remote}}/api/faqs",
+							"host": [
+								"{{remote}}"
+							],
+							"path": [
+								"api",
+								"faqs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create FAQ",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"question\": \"What is your return policy?\", \n    \"answer\": \"Contact our support team or visit our website. Provide your order number and item details.\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://34.220.121.185:3000/api/faqs",
+							"protocol": "http",
+							"host": [
+								"34",
+								"220",
+								"121",
+								"185"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"faqs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete FAQs",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{remote}}/api/faqs/20",
+							"host": [
+								"{{remote}}"
+							],
+							"path": [
+								"api",
+								"faqs",
+								"20"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get FAQ By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{remote}}/api/faqs/1",
+							"host": [
+								"{{remote}}"
+							],
+							"path": [
+								"api",
+								"faqs",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Query Logs",
+			"item": [
+				{
+					"name": "Get Logs",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}/api/querylogs",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"api",
+								"querylogs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Logs",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{remote}}/api/querylogs",
+							"host": [
+								"{{remote}}"
+							],
+							"path": [
+								"api",
+								"querylogs"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Get Qr Code",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/qr",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"qr"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
