@@ -20,6 +20,7 @@ The WhatsApp Customer Support Bot is a Node.js application that integrates Whats
 - **OpenAI GPT-3** (Dynamic Query Responses)
 - **TypeScript** (Language)
 - **Jest** & **Supertest** (Testing)
+- **AWS EC2 Instance** (Deployment Service)
 
 ## Setup Instructions
 
@@ -213,7 +214,6 @@ FAQ Response
     }
 }
 ```
-
 
 Query Logs Request
 ```bash
