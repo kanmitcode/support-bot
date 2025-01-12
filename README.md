@@ -212,7 +212,7 @@ FAQ Response
         "answer": "Our business hours are Monday to Friday, 9:00 AM to 6:00 PM. Let us know how we can assist you!"
     }
 }
-``
+```
 
 
 Query Logs Request
@@ -250,7 +250,6 @@ Query Logs Response
     ]
 }
 ```
-
 
 
 Deployment
