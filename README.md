@@ -165,7 +165,7 @@ You can test the API endpoints using Postman or Supertest. Tests are located in 
 
 Using Postman
 
-Get QR Code
+Get QR Code (Use this enpoint to get most recent QR Code to connect )
 ```bash
 curl --location 'http://34.220.121.185:3000/api/qr'
 ```
