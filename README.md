@@ -20,6 +20,7 @@ The WhatsApp Customer Support Bot is a Node.js application that integrates Whats
 - **OpenAI GPT-3** (Dynamic Query Responses)
 - **TypeScript** (Language)
 - **Jest** & **Supertest** (Testing)
+- **Pm2** (Process Manager)
 - **AWS EC2 Instance** (Deployment Service)
 
 ## Setup Instructions
@@ -73,10 +74,15 @@ npm run dev
 ```
 or
 
-Run production server (with test summary)
+```bash
+npm run start:test
+```
+or
+
+Run production server
 
 ```bash
-npm run start
+npm run start:prod
 ```
 This will compile the TypeScript code, and run test to ensure testcases are good, then start the server.
 
@@ -141,6 +147,8 @@ Response:
     ]
 }
 ```
+
+Other endpoints are in the project and also available in the postman collection.
 
 
 Testing
@@ -254,11 +262,14 @@ Query Logs Response
 
 Deployment
 
-The app is hosted on AWS EC2 Instance.
+The app is hosted on AWS EC2 Instance as seen in screenshot.
 The IP address to the endpoint: http://34.220.121.185:3000
+
+![alt text](image-2.png)
+
 
 
 Test Via Chat
 
-You can easily message the bot to interact:
+You can easily interact with the bot:
 https://wa.me/2347033812556?text=Hi
