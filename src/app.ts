@@ -28,27 +28,3 @@ app.get('/', (req: Request, res: Response) => {
 });
 
 export default app;
-
-
-// import express, { Application } from "express";
-// import dotenv from "dotenv";
-// import faqRoutes from "./routes/faqRoutes";
-// import queryLogRoutes from "./routes/queryLogRoutes";
-
-// dotenv.config();
-
-// const app: Application = express();
-// app.use(express.json());
-
-// // Routes
-// app.get('/', (req: any, res: any) => {
-//   res.status(200).json({ message: "Welcome to customer support bot api" }) 
-// }
-// );
-// app.use("/faqs", faqRoutes);
-// app.use("/logs", queryLogRoutes);
-
-// const PORT = process.env.PORT || 3000;
-// app.listen(PORT, () => {
-//   console.log(`Server running on port ${PORT}`);
-// });

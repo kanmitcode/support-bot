@@ -5,13 +5,13 @@ describe('FAQ Routes', () => {
   it('should fetch all FAQs', async () => {
     const res = await request(app).get('/api/faqs');
     expect(res.status).toBe(200);
-    expect(Array.isArray(res.body)).toBe(true);
+    expect(Array.isArray(res.body.data)).toBe(true);
   });
 
   it('should fetch FAQ by ID', async () => {
     const res = await request(app).get('/api/faqs/1');
     expect(res.status).toBe(200);
-    expect(res.body).toHaveProperty('id', 1);
+    expect(res.body.data).toHaveProperty('id', 1);
   });
 
   it('should return 404 for non-existing FAQ', async () => {
@@ -27,8 +27,8 @@ describe('FAQ Routes', () => {
     };
     const res = await request(app).post('/api/faqs').send(newFAQ);
     expect(res.status).toBe(201);
-    expect(res.body).toHaveProperty('id');
-    expect(res.body).toHaveProperty('question', newFAQ.question);
-    expect(res.body).toHaveProperty('answer', newFAQ.answer);
+    expect(res.body.data).toHaveProperty('id');
+    expect(res.body.data).toHaveProperty('question', newFAQ.question);
+    expect(res.body.data).toHaveProperty('answer', newFAQ.answer);
   });
 });

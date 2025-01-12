@@ -9,18 +9,6 @@ import path from 'path';
 
 dotenv.config();
 
-// const clientOptions: ClientOptions = {
-//   puppeteer: {
-//     headless: true,
-//     args: [
-//       '--no-sandbox'
-//     ]
-//   },
-//   authStrategy: new LocalAuth({
-//     clientId: "support-bot"
-//   })
-// };
-
 const clientOptions: ClientOptions = {
   puppeteer: {
     headless: true,
@@ -29,16 +17,14 @@ const clientOptions: ClientOptions = {
     ]
   },
   authStrategy: new LocalAuth({
-    clientId: 'SupportBot', // Unique identifier for this session
-    dataPath: './wwebjs_auth', // Persistent session folder
+    clientId: 'SupportBot',
+    dataPath: './wwebjs_auth',
   }),
 };
 
 export const client = new Client(clientOptions);
 
-const sessionData: Record<string, string> = {}; // In-memory session storage
-
-// const sessions: { [key: string]: string } = {};
+const sessionData: Record<string, string> = {};
 
 client.on('qr', (qr: string) => {
   qrcode.generate(qr, { small: true });
@@ -59,7 +45,6 @@ client.on('disconnected', (reason) => {
   console.warn('Client disconnected:', reason);
 });
 
-// Error Handling
 client.on('error', (error) => {
   console.error('Error occurred:', error);
 });
@@ -82,9 +67,10 @@ client.on('message', async (message: Message) => {
       sessionData[sender] = message.body.trim();
       await client.sendMessage(sender, `Nice to meet you, ${message.body}! How can I assist you today?`);
       logger.info(`message: ${message.body}`);
+      
     } else if (message.body.toLowerCase() === 'exit') {
       await message.reply('Goodbye!');
-      delete sessionData[sender]; // Clear session
+      delete sessionData[sender];
     } else {
       // Check if the message matches an FAQ
       const faq = await prisma.fAQ.findFirst({

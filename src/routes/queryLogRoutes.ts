@@ -3,7 +3,7 @@ import { getAllQueryLogs, createQueryLog } from '../controllers/queryLogControll
 
 const router = Router();
 
-router.get('/api/querylogs', getAllQueryLogs);
 router.post('/api/querylogs', createQueryLog);
+router.get('/api/querylogs', getAllQueryLogs);
 
 export default router;

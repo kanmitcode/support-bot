@@ -3,7 +3,8 @@ import { getAllFAQs, getFAQById, createFAQ } from '../controllers/faqController'
 
 const router = Router();
 
+router.post('/api/faqs', createFAQ);
 router.get('/api/faqs', getAllFAQs);
 router.get('/api/faqs/:id', getFAQById);
-router.post('/api/faqs', createFAQ);
+
 export default router;
