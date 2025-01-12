@@ -3,6 +3,10 @@
 ## Overview
 The WhatsApp Customer Support Bot is a Node.js application that integrates WhatsApp Web, PostgreSQL, and OpenAI's GPT-3 API to provide automated customer support. This bot can respond to frequently asked questions (FAQs) based on a database, log queries for future analysis, and provide dynamic responses through OpenAI's model for unknown queries.
 
+
+![alt text](sample1.jpeg) ![alt text](sample2.jpeg)
+
+
 ## Features
 - Automated handling of frequently asked questions (FAQs).
 - Logging of user queries and responses for further analysis.
