@@ -65,50 +65,82 @@ This will ensure the database is ready for storing FAQs and query logs.
 You will need to scan the WhatsApp Web QR code to authenticate with your WhatsApp account. When you run the bot, it will generate a QR code that you can scan with the WhatsApp mobile app.
 
 ### 6. Start the Application
-Run the development server:
+Run the development server (with test coverage):
 
 ```bash
 npm run dev
 ```
-This will compile the TypeScript code, and nodemon will automatically restart the server when files change.
+or
+
+Run production server (with test summary)
+
+```bash
+npm run start
+```
+This will compile the TypeScript code, and run test to ensure testcases are good, then start the server.
+
+You should have below information as shown in screenshot below:
+
+![alt text](image.png)
+
 
 ### 7. Access the Bot
-Once the bot is running, you can test it by messaging it through WhatsApp. You can also use API endpoints to interact with the bot.
+Once the bot is running, you can test it by messaging it through WhatsApp. You can also use API endpoints to add/check the services and logs.
 
 API Endpoints
 
-/api/bot/init
+> Manage FAQs
+
+Endpoint: /api/faqs
 
 Method: POST
 
-Description: Initializes the WhatsApp bot. Requires scanning the QR code.
-
-Response:
-```json
-{
-  "message": "WhatsApp bot initialized and ready."
-}
-```
-
-/api/bot/message
-
-Method: POST
-
-Description: Sends a message to the bot and receives a response.
+Description: Add or update FAQs.
 
 Request Body:
 ```json
 {
-  "message": "What is your return policy?"
+  "question": "What are your business hours?",
+  "answer": "Our business hours are Monday to Friday, 9:00 AM to 6:00 PM. Let us know how we can assist you!"
 }
 ```
+Response Body:
+```json
+{
+    "message": "FAQ successfully created",
+    "data": {
+        "id": 12,
+        "question": "What is your return policy?",
+        "answer": "Contact our support team or visit our website. Provide your order number and item details."
+    }
+}
+```
+
+Endpoint: /api/faqs
+
+Method: GET
+
+Description: Fetch all FAQs.
 
 Response:
 ```json
 {
-  "response": "Contact our support team or visit our website. Provide your order number and item details."
+    "message": "FAQs success",
+    "data": [
+        {
+            "id": 1,
+            "question": "What are your business hours?",
+            "answer": "Our business hours are Monday to Friday, 9:00 AM to 6:00 PM. Let us know how we can assist you!"
+        },
+        {
+            "id": 2,
+            "question": "What is your return policy?",
+            "answer": "Contact our support team or visit our website. Provide your order number and item details."
+        },
+    ]
 }
 ```
+
 
 Testing
 
@@ -131,24 +163,95 @@ API Tests
 You can test the API endpoints using Postman or Supertest. Tests are located in the tests/ folder of the application:
 
 Using Postman
+
+Get QR Code
+```bash
+curl --location 'http://34.220.121.185:3000/api/qr'
+```
+Response:
+![alt text](image-1.png)
+
+Other APIs
+
+Get All FAQs
 ```bash
 curl --location 'http://34.220.121.185:3000/api/faqs'
 ```
-Response
+FAQs Response
 ```json
-[
-    {
+{
+  "message": "FAQs success",
+  "data": [
+      {
+          "id": 1,
+          "question": "What are your business hours?",
+          "answer": "Our business hours are Monday to Friday, 9:00 AM to 6:00 PM. Let us know how we can assist you!"
+      },
+      {
+          "id": 2,
+          "question": "What is your return policy?",
+          "answer": "Contact our support team or visit our website. Provide your order number and item details."
+      },
+  ]
+}
+```
+
+Get One FAQ
+```bash
+curl --location 'http://34.220.121.185:3000/api/faqs/1'
+```
+
+FAQ Response
+
+```json
+{
+    "message": "FAQ successfully retrieved",
+    "data": {
         "id": 1,
         "question": "What are your business hours?",
         "answer": "Our business hours are Monday to Friday, 9:00 AM to 6:00 PM. Let us know how we can assist you!"
-    },
-    {
-        "id": 2,
-        "question": "What is your return policy?",
-        "answer": "Contact our support team or visit our website. Provide your order number and item details."
     }
-]
+}
+``
+
+
+Query Logs Request
+```bash
+curl --location 'http://34.220.121.185:3000/api/querylogs'
 ```
+
+Query Logs Response
+```json
+{
+    "message": "Query log success",
+    "data": [
+        {
+            "id": 1,
+            "userName": "Tolulope",
+            "query": "Return policy",
+            "response": "Contact our support team or visit our website. Provide your order number and item details.",
+            "timestamp": "2025-01-11T21:27:40.563Z"
+        },
+        {
+            "id": 2,
+            "userName": "Tolulope",
+            "query": "business hours",
+            "response": "Our business hours are Monday to Friday, 9:00 AM to 6:00 PM. Let us know how we can assist you!",
+            "timestamp": "2025-01-11T21:28:28.951Z"
+        },
+        {
+            "id": 3,
+            "userName": "Olayemi",
+            "query": "What's your business hours?",
+            "response": "I am available 24/7 to assist you with any questions or inquiries you may have. Feel free to reach out to me at any time.",
+            "timestamp": "2025-01-11T21:30:05.452Z"
+        },
+        ...
+    ]
+}
+```
+
+
 
 Deployment
 
