@@ -256,3 +256,9 @@ Deployment
 
 The app is hosted on AWS EC2 Instance.
 The IP address to the endpoint: http://34.220.121.185:3000
+
+
+Test Via Chat
+
+You can easily message the bot to interact:
+https://wa.me/2347033812556?text=Hi
