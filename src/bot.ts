@@ -68,7 +68,7 @@ client.on('message', async (message: Message) => {
       await client.sendMessage(sender, `Nice to meet you, ${message.body}! How can I assist you today?`);
       logger.info(`message: ${message.body}`);
       
-    } else if (message.body.toLowerCase() === 'exit') {
+    } else if (message.body.toLowerCase() === 'exit' || message.body.toLowerCase() === 'reset') {
       await message.reply('Goodbye!');
       delete sessionData[sender];
     } else {
