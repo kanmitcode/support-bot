@@ -86,7 +86,6 @@ client.on('message', async (message: Message) => {
 
       await client.sendMessage(sender, response);
 
-      // Log the query
       await prisma.queryLog.create({
         data: {
           userName: sessionData[sender],
@@ -94,6 +93,8 @@ client.on('message', async (message: Message) => {
           response,
         },
       });
+
+      logger.info(`message: ${message.body}, ${response}`);
     }
   } catch (error) {
     logger.error(`Error handling message: ${message.body}, ${error}`);
