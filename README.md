@@ -29,6 +29,8 @@ The WhatsApp Customer Support Bot is a Node.js application that integrates Whats
 
 ## Setup Instructions
 
+![alt text](support-design.drawio.png)
+
 ### Prerequisites
 Before you begin, ensure you have the following installed:
 - **Node.js** (>= 20.x)
