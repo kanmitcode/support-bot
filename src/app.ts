@@ -24,7 +24,7 @@ app.use(faqRoutes);
 app.use(queryLogRoutes);
 app.use(qrRoutes);
 app.get('/', (req: Request, res: Response) => {
-  res.send('Customer Support Bot API');
+  res.send('Customer Support Bot API Test');
 });
 
 export default app;
