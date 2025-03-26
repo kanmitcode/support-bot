@@ -67,7 +67,7 @@ client.on('message', async (message: Message) => {
       sessionData[sender] = message.body.trim();
       await client.sendMessage(sender, `Nice to meet you, ${message.body}! How can I assist you today?`);
       logger.info(`message: ${message.body}`);
-      
+
     } else if (message.body.toLowerCase() === 'exit') {
       await message.reply('Goodbye!');
       delete sessionData[sender];
@@ -94,6 +94,9 @@ client.on('message', async (message: Message) => {
           response,
         },
       });
+
+      logger.info(`message: ${message.body}, ${response}`);
+
     }
   } catch (error) {
     logger.error(`Error handling message: ${message.body}, ${error}`);

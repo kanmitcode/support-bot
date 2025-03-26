@@ -9,9 +9,9 @@ describe('FAQ Routes', () => {
   });
 
   it('should fetch FAQ by ID', async () => {
-    const res = await request(app).get('/api/faqs/5');
+    const res = await request(app).get('/api/faqs/65');
     expect(res.status).toBe(200);
-    expect(res.body.data).toHaveProperty('id', 5);
+    expect(res.body.data).toHaveProperty('id', 65);
   });
 
   it('should return 404 for non-existing FAQ', async () => {
